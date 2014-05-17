@@ -1,0 +1,601 @@
+.main {
+  overflow: hidden;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+}
+ .spent-logo-initial {
+  
+ }
+ 
+.challenge-option-results {
+  z-index: 200002;
+  position: absolute;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+.challenge-prompt {
+  font-family: 'AlternateGothic', AlternateGothic, sans-serif;
+  color: #E0D8BA;
+  letter-spacing: 5px;
+  font-weight: lighter;
+}
+.option-prompt {
+  font-family: 'AlternateGothic', AlternateGothic, sans-serif;
+  font-size: 50px;
+  letter-spacing: 7px;
+  color: #cc3300;
+  font-weight: lighter;
+}
+.option-button a {
+  background-color: #cc3300;
+  color: black;
+  border-color: #cc3300;
+  font-size: 22px;
+  letter-spacing: 1px;
+  font-family: 'AlternateGothic', AlternateGothic, sans-serif;
+  font-weight: lighter;
+}
+.option-button a:hover {
+  background-color: #8fd5c8;
+  color: black;
+  border-color: #8fd5c8;
+  font-size: 22px;
+  letter-spacing: 1px;
+  font-family: 'AlternateGothic', AlternateGothic, sans-serif;
+  font-weight: lighter;
+}
+.spent-background {
+  z-index: 2;
+  position:  absolute;
+}
+.spent-background img {
+  position: relative;
+  top: 0px;
+  left: 0px
+  z-index: 2;
+}
+.menuCanvas {
+  z-index: 100;
+}
+.ringCanvas {
+  z-index: 50;
+}
+.side-borders-translucent {
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  position: absolute;
+  z-index: 30;
+  overflow: hidden;}
+.rings {
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  position: absolute;
+  z-index: 20;
+  overflow: hidden;
+}
+
+.day-separator {
+  border-top: 1px dotted #ce4415;
+  height: 1px;
+  opacity: .3; 
+  margin-left: 17px;
+  margin-right: 192px;
+  margin-top: 0px;
+  margin-bottom: -5px;
+  width: 29px;
+}
+.balance-separator {
+  border-top: 1px dotted #ce4415;
+  height: 1px;
+  width: 60px;
+  opacity: .3;
+  margin-left: 43px;
+  margin-right: 91px;
+  margin-top: 0px;
+  margin-bottom: -5px;
+}
+.readout-center {
+  margin-left: auto;
+  margin-right: auto;
+}
+.day-balance-readout {
+/*  position: absolute;
+*/  /*width: 95%;*/
+}
+.left-side-spacer {
+  width: 100px;
+  display: table-cell;
+  float: left;
+}
+.bank-balance {
+  top: 0px;
+  float: left;
+  width: 119px;
+  position: absolute;
+  z-index: 400;
+}
+.horizontal-dots {
+  max-width: 70%;
+  min-width: 20%;
+  width: 100%;
+  /* margin-left: -30px; */
+  display: table-cell;
+  top: 13px;
+  position: relative;
+   float: left; 
+}
+.day-of-month {
+  float: right;
+  /* margin-top: -58px; */
+  width: 179px;
+  display: table-cell;
+  position: relative;
+  top: 0px;
+  left: 100vw;
+  position: absolute;
+  z-index: 40;
+}
+.balance-amount {
+  font-family: "Engravers MT";
+  color: #8fd5c8;
+  font-size: 28px;
+  text-align: center;
+  cursor: default;
+  padding-left: 12px;
+  letter-spacing: 5px;
+  float: right;
+}
+.currency-indicator {
+  font-family: "Engravers MT";
+  color: #8fd5c8;
+  font-size: 28px;
+  text-align: right;
+  cursor: default;
+}
+.current-game-day {
+  font-family: "Engravers MT";
+  color: #8fd5c8;
+  font-size: 28px;
+  text-align: center;
+  cursor: default;
+  /* padding-left: 12px; */
+  letter-spacing: 5px;
+  margin-left: 13px;
+}
+.readout-label {
+  font-family: "Engravers MT";
+  color: #8fd5c8 ;
+  font-size: 8px;
+  text-align: center;
+  cursor: default;
+  line-height: .5em;
+    padding-left: 12px;
+  letter-spacing: 1.5px;
+}
+
+.balance {
+  margin-left: 32px;
+}
+.day {
+  font-family: "Engravers MT";
+  color: #8fd5c8;
+  font-size: 9px;
+  text-align: center;
+  cursor: default;
+  padding-left: 27px;
+  letter-spacing: 1.5px;
+  margin-left: -10px;
+}
+
+.red-dots {
+  border-top: 1px dotted #ce4415;
+  height: 1px;
+  width:  100%;
+  opacity: .3;
+  /* margin-left: 184px; */
+  margin-top: 22px;
+  margin-right: 100px;
+  /*max-width: 70%;*/
+  /* min-width: 5%; */
+  /* top: -20px; */
+/*  position: absolute;*/
+}
+.readout-date-red-solid {
+  margin-top: 0px;
+  width: 110px;
+  border-top: 1px solid #ce4415;
+  margin-top: -21px;
+  /* position: absolute; */
+  /* left: 75px; */
+  margin-left: 67px;
+}
+.days {
+  position: absolute;
+  top: 25px;
+  z-index: 40;
+  height: 50vh;
+}
+
+.day-01 {
+  position: absolute;
+}
+.pay-day {
+  display: inline;
+  font-family: "AlternateGothic";
+  font-size: 16px;
+  letter-spacing: 2px;
+  color: #8fd5c8 ;
+  margin-left: 16px;
+  margin-right: -15px;
+}
+
+.hide-day {
+  color: transparent; ;
+}
+
+.past-day {
+  font-family: "Engravers MT";
+  color: gray ;
+  font-size: 9px;
+  text-align: center;
+  cursor: default;
+  padding-left: 16px;
+  letter-spacing: 1.5px;
+}
+
+.pay-day-hidden {
+  color: transparent;
+}
+
+
+.day {
+  font-family: "Engravers MT";
+  color: #8fd5c8 ;
+  font-size: 9px;
+  text-align: center;
+  cursor: default;
+  padding-left: 27px;
+  letter-spacing: 1.5px;
+}
+
+.sound {
+  position: absolute;
+  z-index: 15000;
+  cursor: pointer;
+}
+
+.exit {
+  position: absolute;
+  margin-top: 10px;
+  z-index: 15000;
+  top: 17px;
+  left: 18px;
+}
+.exit img {
+  margin: -62px 0px 0px -15px;
+}
+.exit p {
+  font-family: "AlternateGothic";
+  font-size: 16px;
+  letter-spacing: 2px;
+  margin: 0px -5px -5px 0px;
+  color: #c8390a;
+}
+.exit:hover p {
+    color: #8fd5c8;
+}
+.exit:hover {
+  cursor: pointer;
+}
+
+.menu-item {
+  font-family: "AlternateGothic", AlternateGothic, sans-serif;
+  font-size: 16px;
+  letter-spacing: 1.2px;
+}
+
+.need-cash {
+  font-family: "Engravers MT";
+  color: #8fd5c8 ;
+  font-size: 9px;
+  text-align: center;
+  cursor: default;
+  padding-left: 12px;
+}
+
+.need-cash p {
+  margin-left: 9px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding-top: 10px;
+}
+
+.rescues {
+  position: absolute;
+  text-align: center;
+  z-index: 15000;
+  padding-top: 10px;
+  padding-bottom: 5px;
+  width: 55px;
+}
+
+.rescues p {
+  text-align: center;
+  margin: -7px 0px 8px -11px;
+}
+.rescues img {
+  padding: 2px 0 10px 0;
+}
+
+.hr-red-dots {
+  border-top: 1px dotted #ce4415;
+  height: 1px;
+  width:  40%;
+  text-align: center;
+  margin-top: -5px;
+  margin-bottom: 5px;
+  opacity: .4;
+}
+
+.job-strikes {
+  position: absolute;
+  text-align: center;
+  z-index: 15000;
+  padding-top: 10px;
+  padding-bottom: 15px;
+  width: 55px;
+}
+.job-strikes p {
+  text-align: center;
+  margin: -7px 0px 8px -12px;
+}
+.job-strikes img {
+  margin-bottom: -5px;
+}
+
+
+.navbar-bs3-override {
+  display: inline-block;
+  float: none;
+  margin-top: -3px;
+}
+
+.navbar-collapse-bs3-override {
+  text-align: center;
+}
+
+.main-panel {
+  max-width: 84%;
+  min-width: 20%;
+}
+
+.main-panel-row {
+ 
+}
+.app-viewport {
+  margin-top: -20px;
+}
+.left-vertical {
+  background-image: url("../images/white-bg.png");
+  background-repeat: repeat;
+  width: 90px;
+  max-height: 645px;
+  height: 100%;
+  float:left;
+  left: -230px;
+}
+.left-vertical img {
+  padding-left: 15px;
+  padding-bottom: 1px;
+  width: 98%;
+  height: 98%;
+}
+.right-vertical {
+background-image: url("../images/white-bg.png");
+background-repeat: repeat;
+width: 92px;
+padding-left: 8px;
+max-height: 645px;
+height: 100%;
+float: right;
+top: -48px;
+right: -260px;
+position: relative;
+}
+
+.menu {
+  height: 5%;
+  width: 100%;
+  max-height: 15px;
+  position: absolute;
+  z-index: 20000;
+}
+
+.menu-container {
+height: 1px;
+border-top: 1px solid rgba(102, 153, 153, .3);
+
+} 
+.phone-menu {
+  position: absolute;
+    z-index: 16000;
+    cursor: pointer;
+}
+
+.phone-menu-icon {
+  
+}
+.phone-menu-div {
+  position: absolute;
+}
+.phone-menu-div-display {
+  background: black;
+  width: 150px;
+  padding-top: 10px;
+}
+.display-hidden {
+  display: none;
+}
+
+.display-visible {
+  display: inline-block;
+}
+
+.menu-sub-div { max-height: 15px; }
+
+.spent-logo {
+
+}
+
+.spent-logo-image {
+  position: absolute;
+  z-index: 15000;
+}
+.day-one-badge {
+  position: absolute;
+  z-index: 15000;  
+}
+
+.spent-logo-initial {
+  position: absolute;
+  z-index: 15000;
+  top: -10vh;
+  left: 10vw;
+}
+.can-u-make-it {
+  position: absolute;
+  z-index: 15000;
+}
+
+.can-u-make-it > span {
+  font-family: "AlternateGothic", AlternateGothic, sans-serif;
+  font-size: 14px;
+  letter-spacing: 1.5px;
+  color: #669999;
+}
+
+#no-phone-landscape {
+  position: absolute;
+}
+.device-unsupported-warning {
+  font-family: "AlternateGothic", AlternateGothic, sans-serif;
+  color: black ;
+  font-size: 22px;
+  font-variant: bolder;
+}
+
+.debug {
+  font-family: 'AlternateGothic', AlternateGothic, sans-serif;
+  font-size: 20px;
+  color: red;
+  position: absolute;
+  z-index: 15000;
+}
+
+
+
+html {
+  height: 100%;
+
+}
+
+body {
+  padding-top: 20px;
+  margin-bottom: -20px;
+  height: 100%;
+  background-color: black;
+}
+
+/* these are specified to be the same as matchmedia-ng which is being used to determine positioning of elements on the page
+                phone : "(max-width: 767px)",
+                tablet : "(min-width: 768px) and (max-width: 979px)",
+                desktop : "(min-width: 979px)",
+                portrait : "(orientation: portrait)",
+                landscape : "(orientation: landscape)"
+see: https://github.com/AnalogJ/matchmedia-ng/blob/master/matchmedia-ng.js;
+*/
+/
+@media screen and (max-width: 767px) {  /* phone */
+ .menu  > li {
+  display: none;
+ }
+ .bank-balance {
+   left:  40px;
+ }
+ .exit {
+    width: 90%;
+    top: 8px;
+    left: 8px;
+ }
+ .phone-menu {
+    display: inline;
+ }
+ .challenge-prompt {
+  font-size: 24px;
+ }
+ .spent-logo-initial {
+
+ }
+}
+
+@media screen and (max-height: 610px) { /* custom - too narrow */
+ .day-one-badge {
+    display: none;
+ }
+ .can-u-make-it {
+    display: none;
+ }
+
+}
+
+@media screen and (min-width: 768px) and (max-width: 979px) { /* tablet */
+ .bank-balance {
+    left:  82px;
+ }
+ .phone-menu {
+    display: none; 
+ }
+ .challenge-prompt {
+  font-size: 28px;
+ }
+}
+@media screen and (min-width: 979px) { /* desktop */
+ .bank-balance {
+   left:  82px;
+ }
+ .phone-menu {
+    display: none; 
+ }
+ .challenge-prompt {
+    font-size: 44px;
+ }
+}
+@media screen and (orientation: portrait) { /* portrait */
+
+}
+@media screen and (orientation: landscape) { /* landscape */
+
+}
+@media screen and (max-width: 767px) and (orientation: landscape) { /* phone landscape */
+  .main {
+    display: none;
+  }
+  .no-phone-landscape {
+    display: inline;
+  }
+}
+@media screen and (min-width: 768px) and (max-width: 979px) and (orientation: landscape) { /* tablet && landscape */
+ .exit {
+    top: 4px;
+    left: 18px;
+ }
+}
+
