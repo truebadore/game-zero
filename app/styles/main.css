@@ -9,19 +9,34 @@
  .spent-logo-initial {
   
  }
- 
+.challenge-body {
+  margin-left: 15%;
+  margin-right: 15%;
+}
 .challenge-option-results {
-  z-index: 200002;
+  z-index: 20002;
   position: absolute;
   text-align: center;
   margin-left: auto;
   margin-right: auto;
 }
+
+.simple-challenge-prompt {
+  font-family: 'AlternateGothic', AlternateGothic, sans-serif;
+  color: #E0D8BA;
+  font-size: 24px;
+  letter-spacing: 5px;
+  font-weight: lighter;
+  float: left;
+}
+
 .challenge-prompt {
   font-family: 'AlternateGothic', AlternateGothic, sans-serif;
   color: #E0D8BA;
+  font-size: 24px;
   letter-spacing: 5px;
   font-weight: lighter;
+  float: left;
 }
 .option-prompt {
   font-family: 'AlternateGothic', AlternateGothic, sans-serif;
@@ -48,6 +63,26 @@
   font-family: 'AlternateGothic', AlternateGothic, sans-serif;
   font-weight: lighter;
 }
+
+.option-text-button a {
+  color: #cc3300;
+  font-size: 22px;
+  letter-spacing: 1px;
+  font-family: 'AlternateGothic', AlternateGothic, sans-serif;
+  font-weight: lighter;
+  cursor: pointer;
+}
+.option-text-button a:hover {
+  color: #8fd5c8;
+  font-size: 22px;
+  letter-spacing: 1px;
+  font-family: 'AlternateGothic', AlternateGothic, sans-serif;
+  font-weight: lighter;
+  font-style: normal;
+  cursor: pointer;
+  text-decoration: none !important;
+}
+
 .spent-background {
   z-index: 2;
   position:  absolute;
@@ -465,10 +500,12 @@ border-top: 1px solid rgba(102, 153, 153, .3);
 }
 
 .spent-logo-initial {
-  position: absolute;
+  position: relative;
   z-index: 15000;
-  top: -10vh;
-  left: 10vw;
+  margin-left: auto;
+  margin-right: auto;
+  float: left;
+  width: 100%;
 }
 .can-u-make-it {
   position: absolute;
@@ -497,7 +534,7 @@ border-top: 1px solid rgba(102, 153, 153, .3);
   font-size: 20px;
   color: red;
   position: absolute;
-  z-index: 15000;
+  z-index: 21000;
 }
 
 
@@ -566,6 +603,9 @@ see: https://github.com/AnalogJ/matchmedia-ng/blob/master/matchmedia-ng.js;
  .challenge-prompt {
   font-size: 28px;
  }
+ .simple-challenge-prompt {
+  font-size: 34px;
+ }
 }
 @media screen and (min-width: 979px) { /* desktop */
  .bank-balance {
@@ -575,7 +615,10 @@ see: https://github.com/AnalogJ/matchmedia-ng/blob/master/matchmedia-ng.js;
     display: none; 
  }
  .challenge-prompt {
-    font-size: 44px;
+    font-size: 30px;
+ }
+ .simple-challenge-prompt {
+  font-size: 40px;
  }
 }
 @media screen and (orientation: portrait) { /* portrait */

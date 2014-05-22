@@ -1,0 +1,26 @@
+<section class="challenge-container complex-challenge">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-xs-1"></div>
+			<div class="col-xs-10 challenge-body">
+				<div class="text-center challenge-prompt" style="font-size: 54px;" ng-bind-html="challengeCopy"></div>
+				<div class="options-horizontal" ng-model="challengeOptions">
+					<div ng-repeat="item in currentChallengeOptions"  class="option-text-button">
+							<a ng-click="selectedOption(item['@id'])" ng-bind-html="item['title']"/>
+					</div>
+				</div>
+				<br/>
+				<br/>
+				<div id="spent-logo-initial" spent-logo-initial-position class="text-center spent-logo-initial" ng-switch="isPhone">
+					<div ng-switch-when=true>
+						<img src="images/spent-logo-small.png"/>
+					</div>
+					<div ng-switch-when=false>
+						<img src="images/spent-logo.png"/>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-1"></div>
+		</div>
+	</div>
+</section>

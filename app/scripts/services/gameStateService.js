@@ -1,10 +1,14 @@
 var gameStateModule = angular.module('gameStateService', []);
 
-gameStateModule.factory('gameStateService',  ['$rootScope', 'eventBusService', 'DayDataService',  function ($rootScope, eventBusService, DayDataService) {
+gameStateModule.factory('gameStateService',  ['$rootScope', 'eventBusService', 'DayDataService',   function ($rootScope, eventBusService, DayDataService) {
 
   var gameState = {};
   var eventBus = eventBusService;
   gameState._allDayData = DayDataService;
+  gameState._currentChallengeIndex = '-1';
+  gameState._allPayDayAdjustment = 0;
+  gameState._nextPayDayAdjustment = 0;
+  gameState._playerSalary = 0;
 
   gameState._jobStrikes = {
     'strikeOne': 'false',
@@ -25,10 +29,15 @@ gameStateModule.factory('gameStateService',  ['$rootScope', 'eventBusService', '
   gameState._debugMode = false;
   gameState._daysInMonth = 30;
   gameState._currentBankBalance = 1000;
+  gameState._currentChallengeIndex = '-1';
 
   gameState._initGame = function() {
     console.log("initialized game.");
   };
+
+  gameState.beginGame = function () {
+    this._init();
+  }
 
   gameState._init = function() {
     this._initGame();
@@ -58,7 +67,9 @@ gameStateModule.factory('gameStateService',  ['$rootScope', 'eventBusService', '
         return this._currentDay;
   };
   gameState.nextDay = function() {
+      if(gameState._currentChallengeIndex > 3) {
         ++gameState._currentDayIndex;
+      }
   };
   gameState.prevDay = function() {
         --gameState._currentDayIndex;
@@ -80,20 +91,26 @@ gameStateModule.factory('gameStateService',  ['$rootScope', 'eventBusService', '
     } 
   };
   gameState.onChallengeSelected = function (challenge) {
+    gameState._currentChallengeIndex = challenge;
+    eventBus.prepForBroadcast('displayChallenge: ' + gameState._currentChallengeIndex);
+    gameState.nextDay();
+  };
+
+  gameState.onOptionSelected = function (option) {
+    eventBus.prepForBroadcast('findChallengeForOption: ' + option);
   };
   gameState.showState = function() {
         console.log(JSON.stringify(gameState));
   };
-  gameState.start = function() {
-        this._init();
-  };
-  gameState.getChallenge = function() {
+
+  gameState.getNextChallenge = function(id) {
+        nextChallengeID = (id) ? id : "null";
 
         if(!this._initialized) {
           throw new Error("you must first start the game");
         }
 
-        return ( this.endOfTheMonth() ? null : this._challengeRepository.getNextChallenge() );
+        return ( this.endOfTheMonth() ? null : this._challengeRepository.getNextChallenge(nextChallengeID) );
   };
   gameState.optionSelected = function(option) {
     var self = this,
@@ -120,6 +137,13 @@ gameStateModule.factory('gameStateService',  ['$rootScope', 'eventBusService', '
   $rootScope.$on('handleBroadcast', function() {
       var arg = eventBus.message.substr(eventBus.message.lastIndexOf(':') + 2,eventBus.message.length);
       switch (eventBus.message.substr(0, eventBus.message.lastIndexOf(':'))) {
+        case "game":
+          if (arg === 'begin') {
+            gameState.beginGame();
+          } else if (arg === 'over') {
+            gameState.endGame();
+          }
+          break;
         case "nextday":
           gameState.nextDay();
           break;
@@ -140,6 +164,15 @@ gameStateModule.factory('gameStateService',  ['$rootScope', 'eventBusService', '
           break;
         case "debug":
           gameState.toggleDebug(arg);
+          break;
+        case "selectedChallenge":
+          gameState.onChallengeSelected(arg);
+          break;
+        case "selectedOption":
+          gameState.onOptionSelected(arg);
+          break;
+        case "getNextChallenge":
+          gameState.getNextChallenge();
           break;
         default :
           break;

@@ -6,7 +6,16 @@
     <div main-panel-row-maximize-height class="row main-panel-row">
       <div class="main-panel">
         <div class="row">
-          <div id="challenge-options-results" challenge-panel-init class="challenge-option-results display-visible" ng-include="'views/partials/singleChallenge.html'"></div>
+          <div id="challenge-options-results" challenge-panel-init class="challenge-option-results display-visible" >
+            <section ng-controller="ChallengeController" class="challenge-container">
+              <div class="container-fluid">
+                <div class="row">
+                  <div ng-controller="SingleChallengeController">
+                    <div ng-init="initGame" onload="viewLoaded()" ng-include="viewSrc"/>
+                </div>
+              </div>
+            </section>
+          </div>
         </div>
       </div>
     </div>
@@ -62,7 +71,8 @@
                    <button ng-click="nextDay()" ng-disabled="state._currentDayIndex >= 30">+</button>
                    <br/>
       debugMode: {{debugMode}} <input ng-keypress="toggleDebugMode()" type="checkbox" ng-model="state._debugMode" ng-click="toggleDebugMode()"> (D key to return to debugmode)<br/>
-      viewport H {{viewportHeight}} by W {{viewportWidth}}
+      viewport H {{viewportHeight}} by W {{viewportWidth}}<br/>
+      Current Challenge ID {{state._currentChallengeIndex}}
     </div>
     <div id="menu-bar" menu-bottom-edge class="container-fluid menu">
       <nav class="menu-sub-div navbar navbar-default" role="navigation">

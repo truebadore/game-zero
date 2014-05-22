@@ -1,0 +1,14 @@
+<section class="challenge-container simple-challenge">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-xs-8 challenge-body">
+				<div class="simple-challenge-prompt" challenge-panel-init ng-bind-html="challengeCopy"></div><br/>
+				<div class="options-horizontal" ng-model="challengeOptions">
+					<div ng-repeat="item in currentChallengeOptions"  class="option-text-button">
+							<a ng-click="selectedOption(item['@id'])" ng-bind-html="item['title']"/>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

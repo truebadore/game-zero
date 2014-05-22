@@ -5,7 +5,7 @@ playerControllers.controller('PlayerController', function($scope, eventBusServic
 	$scope.eventBus = eventBusService;
 	$scope.$on('handleBroadcast', function(message) {
 	  if($scope.eventBus.message.lastIndexOf('newplayer', 0) === 0) {
-	  	var balance = parseInt(eventBus.message.substr(eventBus.message.lastIndexOf(':') + 2,eventBus.message.length));
+	  	var balance = parseInt($scope.eventBus.message.substr($scope.eventBus.message.lastIndexOf(':') + 2,$scope.eventBus.message.length));
 	  	$scope.Player(balance);
 	  }
 	});

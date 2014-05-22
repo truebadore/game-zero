@@ -2,6 +2,42 @@
     "challenges": {
         "challenge": [
             {
+                "@id": "-1",
+                "copy": "Urban Ministries of Durham serves over 6,000 people every year.<br \/>But you'd never need help, right?",
+                "maxAmount": null,
+                "minAmount": null,
+                "options": {
+                    "option": [
+                        {
+                            "@id": "-2",
+                            "@title": "ACCEPT THE CHALLENGE"
+                        }
+                    ]
+                },
+                "title": "PROVE IT",
+                "type": "complex"
+            },
+            {
+                "@id": "0",
+                "copy": "CAN YOU MAKE IT THROUGH THE MONTH?",
+                "maxAmount": null,
+                "minAmount": null,
+                "options": {
+                    "option": [
+                        {
+                            "@id": "-1",
+                            "@title": "FIND A JOB"
+                        },
+                        {
+                            "@id": "0",
+                            "@title": "EXIT"
+                        }
+                    ]
+                },
+                "title" :  "CAN YOU MAKE IT" ,
+                "type": "complex"
+            },
+            {
                 "@id": "1",
                 "copy": "You\u2019re running out of money fast. It\u2019s time to get a job \u2013 any job. Here\u2019s what\u2019s available. Click a listing to apply:",
                 "maxAmount": null,
@@ -58,11 +94,11 @@
                         },
                         {
                             "@id": "733",
-                            "@title": "< 15 miles away"
+                            "@title": "\u003c 15 miles away"
                         },
                         {
                             "@id": "85421",
-                            "@title": "> 15 miles away"
+                            "@title": "\u003e 15 miles away"
                         }
                     ]
                 },
