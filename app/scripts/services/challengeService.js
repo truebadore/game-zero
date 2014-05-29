@@ -6,7 +6,7 @@ challengeServiceModule.factory("ChallengeRepositoryService", function ($rootScop
 
   Repository.getData = function() {
     var defer = $q.defer();
-    $http.get('../docs/challenges.json', { cache: 'true'})
+    $http.get('../docs/challenges.json', { cache: 'true'}) //mk-build
     .success(function(data) {
         defer.resolve(data);
     });

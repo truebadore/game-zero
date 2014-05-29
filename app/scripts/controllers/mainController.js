@@ -1,8 +1,10 @@
 var mainController  = angular.module('mainController', ['matchmedia-ng']);
 
-mainController.controller('MainController', function($scope, $window, $document, $timeout, gameStateService, eventBusService, DayDataService, matchmedia) {
+mainController.controller('MainController', function($scope, $route, $window, $document, $timeout, gameStateService, eventBusService, DayDataService, matchmedia) {
+  window.S = $scope;
   $scope.state = gameStateService;
   $scope.eventBus = eventBusService;
+  $scope.phoneMenuVisible = false;
   $scope.mainControllerReference = { debugMode: false };
   $scope.$watch(function(){
       return gameStateService;
@@ -30,6 +32,25 @@ mainController.controller('MainController', function($scope, $window, $document,
   }
   $scope.creditAccount = function(amount) {
     $scope.eventBus.prepForBroadcast('creditaccount: ' + amount);
+  }
+
+  $scope.resetGame = function() {
+    $window.location.reload();
+  }
+
+  $scope.getInvolved = function() {
+    $scope.notYetImplemented();
+  }
+
+  $scope.gameOverDonate = function () {
+    $scope.notYetImplemented();
+  }
+  $scope.gameOverQuit = function () {
+    $scope.notYetImplemented();
+  }
+
+  $scope.notYetImplemented = function () {
+    $window.alert('Thanks for playing - this feature not yet implemented.');
   }
 
   $scope.$watch(function(){
@@ -90,16 +111,35 @@ mainController.controller('MainController', function($scope, $window, $document,
             // update payDayAdjustment
       if(option.balanceAmountChange) {
         $scope.state._currentBankBalance = parseInt($scope.state._currentBankBalance) + parseInt(option.balanceAmountChange);
+        if ($scope.state._currentBankBalance < 1) {
+          $scope.state._currentBankBalance = 0;
+          $scope.eventBus.prepForBroadcast('game: overMoney');
+        }
       }
       if(option.changeAllPaychecks) {
         $scope.state._allPayDayAdjustment = parseInt($scope.state._allPayDayAdjustment) + parseInt(option.changeAllPaychecks);
       }
-      if(option.changeNextPaychecks) {
+      if(option.changeNextPaycheck) {
         $scope.state._nextPayDayAdjustment = parseInt($scope.state._nextPayDayAdjustment) + parseInt(option.changeNextPaycheck);
+        if ($scope.state._currentBankBalance < 1) {
+          $scope.state._currentBankBalance = 0;
+          $scope.eventBus.prepForBroadcast('game: overMoney');
+        }
       }
       if($scope.state._allDayData[$scope.state._currentDayIndexInt].isPayDay === true) {
-        $scope.state._currentBankBalance = parseInt($scope.state._currentBankBalance) + (parseInt($scope.state._nextPayDayAdjustment) + parseInt($scope.state._allayDayAdjustment));
-        $scope.state._nextPayDayAdjustment = 0;
+        $scope.state._currentBankBalance = parseInt($scope.state._currentBankBalance) + (parseInt($scope.state._nextPayDayAdjustment) + parseInt($scope.state._allPayDayAdjustment));
+        $scope.state._nextPayDayAdjustment = 0;      
+        if ($scope.state._currentBankBalance < 1) {
+          $scope.state._currentBankBalance = 0;
+          $scope.eventBus.prepForBroadcast('game: overMoney');
+        }
+      }
+      if ($scope.state._currentBankBalance < 1) {
+        $scope.state._currentBankBalance = 0;
+        $scope.eventBus.prepForBroadcast('game: overMoney');
+      }
+      if ($scope.state._currentBankBalance > 0 && $scope.state._currentDayIndexInt === 30) {
+        $scope.eventBus.prepForBroadcast('game: overWin');
       }
   }
 
@@ -110,55 +150,13 @@ mainController.controller('MainController', function($scope, $window, $document,
     $scope.state._challengeRepository.challenges[0].inactive = true;
   }
 
-
-  $scope.selectedOption = function(id) {
-    // var self = this;
-    // this.option['@id']
-    if (id === 'null') {
-      $scope.eventBus.prepForBroadcast('selectedOption: null');
-    } else {
-      $scope.eventBus.prepForBroadcast('selectedOption: ' + id);
-    }
-  }
-
-
-  $scope.$on('onChallengeDisplayComplete', function(scope, element, attrs){
-    var el = angular.element(document.getElementById('challenge-options-results'));
-    el.ready(function () {  
-         $scope.$watch(function () {
-           if (el[0].offsetHeight > 0) {
-              console.log(el[0].offsetHeight);
-              $scope.mainControllerReference.layoutDynamicContent();
-           }
-         });
-      }); 
-  });
   $scope.$on('onScreenLayoutComplete', function(scope, element, attrs){
     $scope.mainControllerReference.setReadoutXPositions($scope.state._currentDayIndexInt);
   });
   $scope.$on('onDayListComplete', function(scope, element, attrs){
     $scope.mainControllerReference.screenLayoutHandler();
   });
-  $scope.$on('onChallengesAndOptionsComplete', function(scope, element, attrs){
-    var el = angular.element(document.getElementById('challenge-options-results'));
-    el.ready(function () {  
-         $scope.$watch(function () {
-           if (el[0].offsetHeight > 0) {
-              console.log(el[0].offsetHeight);
-              $scope.mainControllerReference.layoutDynamicContent();
-           }
-         });
-      }); 
-      var el2 = angular.element(document.getElementById('debug-panel'));
-    el2.ready(function () {  
-         $scope.$watch(function () {
-           if (el2[0].offsetHeight > 0) {
-              console.log(el2[0].offsetHeight);
-              $scope.mainControllerReference.layoutDynamicContent();
-           }
-         });
-      }); 
-  });
+
 
   $scope.setReadoutXPositions = function(currentDay) {
     var dayNumberReadout = angular.element(document.getElementById('day-number-readout'));

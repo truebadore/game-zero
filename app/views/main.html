@@ -2,22 +2,9 @@
   <span class="device-unsupported-warning">SPENT requires your phone to be<br/> in portrait orientation to work.</span>
 </div>
 <div id="viewport" viewport ng-hide="isPhone && isLandscape" class="section main">
-  <div class="container-fluid">
-    <div main-panel-row-maximize-height class="row main-panel-row">
-      <div class="main-panel">
-        <div class="row">
-          <div id="challenge-options-results" challenge-panel-init class="challenge-option-results display-visible" >
-            <section ng-controller="ChallengeController" class="challenge-container">
-              <div class="container-fluid">
-                <div class="row">
-                  <div ng-controller="SingleChallengeController">
-                    <div ng-init="initGame" onload="viewLoaded()" ng-include="viewSrc"/>
-                </div>
-              </div>
-            </section>
-          </div>
-        </div>
-      </div>
+  <div ng-controller="ChallengeController" id="challenge-options-results" challenge-panel-init class="challenge-option-results display-visible" >
+    <div ng-controller="SingleChallengeController">
+      <div ng-include="viewSrc"/>
     </div>
   </div>
   <div class="display-hidden" id="controls-and-badges">
@@ -51,12 +38,14 @@
     </div>
     <div id="can-u-make-it" can-you-make-it-label-position class="can-u-make-it"><span>CAN YOU MAKE IT<br/>THROUGH THE MONTH?</span></div>
     <div id="day-one-badge" day-one-badge-position class="day-one-badge"><img src="images/day-01.png"/></div>
-    <div id="phone-menu-icon" phone-menu-icon-position ng-switch="phoneMenuVisible" class="phone-menu">
-      <div ng-switch-when=false>
-        <img data="menu-on-icon" ng-click="togglePhoneMenu($event)" class="phone-menu-icon" src="images/menu.png"/>
-      </div>
-      <div ng-switch-when=true>
-        <img data="menu-off-icon" ng-click="togglePhoneMenu($event)" src="images/menu-close.png"/>
+    <div ng-class="{'display-visible': isPhone, 'display-hidden': !isPhone}">
+      <div id="phone-menu-icon" phone-menu-icon-position ng-switch="phoneMenuVisible" class="phone-menu">
+        <div ng-switch-when=false>
+          <img data="menu-on-icon" ng-click="togglePhoneMenu($event)" class="phone-menu-icon" src="images/menu.png"/>
+        </div>
+        <div ng-switch-when=true>
+          <img data="menu-off-icon" ng-click="togglePhoneMenu($event)" class="phone-menu-icon" src="images/menu-close.png"/>
+        </div>
       </div>
     </div>
     <div id="debug-panel" ng-show="state._debugMode" class="debug alert alert-danger">isPhone: {{isPhone}} - isTablet: {{isTablet}} - isDesktop: {{isDesktop}}<br/>

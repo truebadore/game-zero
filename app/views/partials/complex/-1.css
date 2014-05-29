@@ -1,0 +1,18 @@
+@media screen and (max-width: 767px) {  /* phone */
+	.challenge-prompt { 
+	 padding: 14% 35% 3% 36%;;
+	}
+	.spent-logo-initial {
+	 padding-top: 39%;
+	}
+}
+
+@media screen and (min-width: 768px) {  /* everything else */
+	.challenge-prompt { 
+	 padding: 5% 35% 3% 36%;
+	}
+	.spent-logo-initial {
+		padding-top: 39%;
+	}
+}
+

@@ -505,7 +505,7 @@
                 "loseJob": "false",
                 "removeChallenge": null,
                 "removeUnresolved": null,
-                "title": "\u003c 15 miles away"
+                "title": "Less than 15 miles away"
             },
             {
                 "@id": "85421",
@@ -521,7 +521,7 @@
                 "loseJob": "false",
                 "removeChallenge": null,
                 "removeUnresolved": null,
-                "title": "\u003e 15 miles away"
+                "title": "More than 15 miles away"
             },
             {
                 "@id": "79",

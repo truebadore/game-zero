@@ -19,7 +19,7 @@
             },
             {
                 "@id": "0",
-                "copy": "CAN YOU MAKE IT THROUGH THE MONTH?",
+                "copy": "CAN YOU MAKE IT<br/> THROUGH THE MONTH?",
                 "maxAmount": null,
                 "minAmount": null,
                 "options": {
@@ -94,11 +94,11 @@
                         },
                         {
                             "@id": "733",
-                            "@title": "\u003c 15 miles away"
+                            "@title": "Less than 15 miles away"
                         },
                         {
                             "@id": "85421",
-                            "@title": "\u003e 15 miles away"
+                            "@title": "More than 15 miles away"
                         }
                     ]
                 },
@@ -107,7 +107,7 @@
             },
             {
                 "@id": "4",
-                "copy": "Your new apartment is too small <br>for your stuff.",
+                "copy": "Your new apartment is too small for your stuff.",
                 "maxAmount": null,
                 "minAmount": null,
                 "options": {
@@ -383,7 +383,7 @@
             },
             {
                 "@id": "453",
-                "copy": "Your tooth has been hurting for weeks, and it\u2019s starting to get unbearable. You need a root canal, but you don\u2019t have <br>dental insurance.",
+                "copy": "Your tooth has been hurting for weeks, and it\u2019s starting to get unbearable. You need a root canal, but you don\u2019t have dental insurance.",
                 "maxAmount": null,
                 "minAmount": null,
                 "options": {
@@ -475,7 +475,7 @@
             },
             {
                 "@id": "197",
-                "copy": "Your child\u2019s class is going on a field trip to the natural history museum. <br>The trip costs $15.",
+                "copy": "Your child\u2019s class is going on a field trip to the natural history museum. The trip costs $15.",
                 "maxAmount": "150",
                 "minAmount": null,
                 "options": {
@@ -515,7 +515,7 @@
             },
             {
                 "@id": "97",
-                "copy": "Your head is pounding and you\u2019re burning up. But you have to be at work <br>in an hour.",
+                "copy": "Your head is pounding and you\u2019re burning up. But you have to be at work in an hour.",
                 "maxAmount": null,
                 "minAmount": null,
                 "options": {
@@ -535,7 +535,7 @@
             },
             {
                 "@id": "570",
-                "copy": "Your head is pounding and you\u2019re burning up. But you have to be at work <br>in an hour.",
+                "copy": "Your head is pounding and you\u2019re burning up. But you have to be at work in an hour.",
                 "maxAmount": null,
                 "minAmount": null,
                 "options": {
@@ -603,7 +603,7 @@
             },
             {
                 "@id": "819",
-                "copy": "You\u2019ve been working for several hours, and you\u2019re starving. But you forgot <br>your lunch.",
+                "copy": "You\u2019ve been working for several hours, and you\u2019re starving. But you forgot your lunch.",
                 "maxAmount": null,
                 "minAmount": null,
                 "options": {
@@ -623,7 +623,7 @@
             },
             {
                 "@id": "439",
-                "copy": "Your best friend from childhood is getting married, and they want you to be in the wedding. The only problem: It\u2019s in <br>another state.",
+                "copy": "Your best friend from childhood is getting married, and they want you to be in the wedding. The only problem: It\u2019s in another state.",
                 "maxAmount": null,
                 "minAmount": null,
                 "options": {
@@ -839,7 +839,7 @@
             },
             {
                 "@id": "510",
-                "copy": "Your mom needs crucial medication but doesn\u2019t have the $100 she needs <br>to buy it.",
+                "copy": "Your mom needs crucial medication but doesn\u2019t have the $100 she needs to buy it.",
                 "maxAmount": null,
                 "minAmount": null,
                 "options": {
@@ -859,7 +859,7 @@
             },
             {
                 "@id": "685",
-                "copy": "Your income level qualifies you for <br>food stamps.",
+                "copy": "Your income level qualifies you for food stamps.",
                 "maxAmount": null,
                 "minAmount": null,
                 "options": {
@@ -967,7 +967,7 @@
             },
             {
                 "@id": "885",
-                "copy": "Your landlord found out that you have a pet, and now you have to pay a <br>$350 pet fee.",
+                "copy": "Your landlord found out that you have a pet, and now you have to pay a $350 pet fee.",
                 "maxAmount": null,
                 "minAmount": null,
                 "options": {
@@ -1235,7 +1235,7 @@
             },
             {
                 "@id": "2626",
-                "copy": "Your child comes home in tears and threatens to stop eating lunch because other kids made fun of all the <br>\u201cfree lunch kids.\u201d",
+                "copy": "Your child comes home in tears and threatens to stop eating lunch because other kids made fun of all the \u201cfree lunch kids.\u201d",
                 "maxAmount": null,
                 "minAmount": null,
                 "options": {
@@ -1355,7 +1355,7 @@
             },
             {
                 "@id": "85357",
-                "copy": "Your child wants to join an after-school sports team, which requires a <br>physical and uniform.",
+                "copy": "Your child wants to join an after-school sports team, which requires a physical and uniform.",
                 "maxAmount": null,
                 "minAmount": null,
                 "options": {
@@ -1399,7 +1399,7 @@
             },
             {
                 "@id": "85370",
-                "copy": "Life throws curveballs, and so does a kid on your block. He shattered your window, and your landlord insists you pay <br>$100 to fix it.",
+                "copy": "Life throws curveballs, and so does a kid on your block. He shattered your window, and your landlord insists you pay $100 to fix it.",
                 "maxAmount": null,
                 "minAmount": null,
                 "options": {
@@ -1463,7 +1463,7 @@
             },
             {
                 "@id": "85379",
-                "copy": "It\u2019s easier to look for extra ways to make money if you have access to the Web.  But you don\u2019t have Internet at home <br>since you moved.",
+                "copy": "It\u2019s easier to look for extra ways to make money if you have access to the Web.  But you don\u2019t have Internet at home since you moved.",
                 "maxAmount": null,
                 "minAmount": null,
                 "options": {

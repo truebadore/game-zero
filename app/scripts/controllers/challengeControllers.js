@@ -16,8 +16,12 @@ challengeControllers.controller('ChallengeController', function($scope, gameStat
 		$scope.updateMoney($scope.getOptionWithID(optionId));
 	  	$scope.removeChallengesForOption(optionId);
 	  	$scope.addChallengesForOption(optionId);
-	  	$scope.getChallengeForOption(optionId);
+	  	$scope.getChallengeForOptionWithID(optionId);
 	  }
+	});
+
+	$scope.$on('onChallengeLoadComplete', function(scope, element, attrs){
+		$scope.state._challengeLoadComplete = true;
 	});
 
 	$scope.challengeRepository = function() {
@@ -41,6 +45,7 @@ challengeControllers.controller('ChallengeController', function($scope, gameStat
 	      if( id == $scope.state._challengeRepository.challenges[i]['@id']) {
 	        challenge = $scope.state._challengeRepository.challenges[i];
 	        $scope.state._challengeRepository.challenges[i].inactive = true;
+	        break;
 	      }
 	    }
 
@@ -90,8 +95,15 @@ challengeControllers.controller('ChallengeController', function($scope, gameStat
         		challenges.push($scope.state._challengeRepository.challenges[j]);
         	}
       	}
-      	$scope.state._currentChallenge = challenges[Math.floor(Math.random()*challenges.length)];
-      	$scope.eventBus.prepForBroadcast('selectedChallenge: ' + $scope.state._currentChallenge['@id']);
+      	// random selection from active challenges
+      	var tryChallenge = challenges[Math.floor(Math.random()*challenges.length)];
+      	// rules
+      	if(tryChallenge['@id'] === 677 && $scope.state._currentBankBalance > 50) { // bank low balance fee
+      		$scope.getNextChallenge();
+      	} else {
+      		$scope.state._currentChallenge = tryChallenge;
+			$scope.eventBus.prepForBroadcast('selectedChallenge: ' + $scope.state._currentChallenge['@id']);
+      	}
 
 	}
 	$scope.removeChallengesForOption = function (optionId) {
@@ -146,40 +158,56 @@ challengeControllers.controller('ChallengeController', function($scope, gameStat
 		}
 	}
 
-	$scope.getChallengeForOption = function (option) {
-		$scope.removeChallengesForOption(option);
-		$scope.addChallengesForOption(option);
-		switch (option) {
+	$scope.getChallengeForOptionWithID = function (optionID) {
+		$scope.removeChallengesForOption(optionID);
+		$scope.addChallengesForOption(optionID);
+		switch (optionID) {
 			case -1:
-				$scope.eventBus.prepForBroadcast('selectedChallenge: ' + '1');
+				$scope.eventBus.prepForBroadcast('selectedChallenge: ' + '1'); //1 is for prod
 				$scope.mainControllerReference.enableControls();
 				break;
 			case 643:
 				$scope.eventBus.prepForBroadcast('selectedChallenge: ' + '2');
+				$scope.updateMoney($scope.getOptionWithID(optionID));
+				$scope.eventBus.prepForBroadcast('nextDay');
 				break;
 			case 288:
 				$scope.eventBus.prepForBroadcast('selectedChallenge: ' + '2');
+				$scope.updateMoney($scope.getOptionWithID(optionID));
+				$scope.eventBus.prepForBroadcast('nextDay');
 				break;
 			case 311:
 				$scope.eventBus.prepForBroadcast('selectedChallenge: ' + '2');
+				$scope.updateMoney($scope.getOptionWithID(optionID));
+				$scope.eventBus.prepForBroadcast('nextDay');
 				break;
 			case 83:
 				$scope.eventBus.prepForBroadcast('selectedChallenge: ' + '3');
+				$scope.updateMoney($scope.getOptionWithID(optionID));
+				$scope.eventBus.prepForBroadcast('nextDay');
 				break;
 			case 99:
 				$scope.eventBus.prepForBroadcast('selectedChallenge: ' + '3');
+				$scope.updateMoney($scope.getOptionWithID(optionID));
+				$scope.eventBus.prepForBroadcast('nextDay');
 				break;
 			case 374:
 				$scope.eventBus.prepForBroadcast('selectedChallenge: ' + '4');
+				$scope.updateMoney($scope.getOptionWithID(optionID));
+				$scope.eventBus.prepForBroadcast('nextDay');
 				break;
 			case 733:
 				$scope.eventBus.prepForBroadcast('selectedChallenge: ' + '4');
+				$scope.updateMoney($scope.getOptionWithID(optionID));
+				$scope.eventBus.prepForBroadcast('nextDay');
 				break;
 			case 85421:
 				$scope.eventBus.prepForBroadcast('selectedChallenge: ' + '4');
+				$scope.updateMoney($scope.getOptionWithID(optionID));
+				$scope.eventBus.prepForBroadcast('nextDay');
 				break;
 			case 0:
-				$scope.eventBus.prepForBroadcast('game: ' + 'over');
+				$scope.gameOverQuit();
 				break;
 			default:
 				$scope.getNextChallenge();
@@ -196,35 +224,82 @@ challengeControllers.controller('SingleChallengeController', function($scope, ev
 	$scope.$on('handleBroadcast', function(message) {
 	  if($scope.eventBus.message.lastIndexOf('displayChallenge', 0) === 0) {
 	  	var challengeId = parseInt($scope.eventBus.message.substr($scope.eventBus.message.lastIndexOf(':') + 2,$scope.eventBus.message.length));
+	  	$scope.viewSrc = 'views/partials/nullChallenge.html';
+	  	$scope.mainControllerReference.hideResults();
 	  	$scope.displayChallenge(challengeId);
 	  }
 	});
 
-	$scope.displayChallenge = function(id) {
-		if(id !== 'null') {
-			$scope.challenge = $scope.getChallengeWithID(id);
-			$scope.currentChallengeOptions = [];
-		    for(k=0; k < $scope.challenge.options.option.length; k++) {
-		    	for (i=0; i < $scope.state._optionRepository.options.length; i ++ ) {
-		      		if( $scope.state._optionRepository.options[i]['@id'] == $scope.challenge.options.option[k]['@id']) {
-		        		$scope.currentChallengeOptions.push($scope.state._optionRepository.options[i]);
-		      		}
-		      	}
-		    }
-		    console.log($scope.currentChallengeOptions);
-			$scope.challengeCopy = $scope.challenge.copy;
-			$scope.challengeType = $scope.challenge.type;
-			if ($scope.challengeType == 'complex') {
-				$scope.viewSrc = 'views/partials/complex/' + id + '.html';
+	$scope.selectedOption = function(option) {
+		$scope.state._currentOption = option;
+		if (option['copy']) {
+			$scope.optionCopy = $scope.state._currentOption['copy'];
+			$scope.optionId = $scope.state._currentOption['@id'];
+			$scope.mainControllerReference.displayResults();
+		} else {
+			if (option['@id'] === 'null') {
+			  $scope.eventBus.prepForBroadcast('selectedOption: null');
 			} else {
-				$scope.viewSrc = 'views/partials/challenge.html';
+			  $scope.eventBus.prepForBroadcast('selectedOption: ' + option['@id']);
+			}
+			if ($scope._currentDayIndexInt = 29 && $scope._currentBankBalance > 0) {
+				$scope.eventBus.prepForBroadcast('game: overWin');
+			} else if ($scope._currentDayIndexInt = 29 && $scope._currentBankBalance <= 0) {
+				$scope.eventBus.prepForBroadcast('game: overMoney');
 			}
 		}
+	}
 
-		$scope.viewLoaded = function () {
-			$scope.eventBus.prepForBroadcast('onChallengeDisplayComplete: ' + id);
+	$scope.continueOption = function(id) {
+		if ($scope._currentDayIndexInt = 29 && $scope._currentBankBalance > 0) {
+			$scope.eventBus.prepForBroadcast('game: overWin');
+		} else if ($scope._currentDayIndexInt = 29 && $scope._currentBankBalance <= 0) {
+			$scope.eventBus.prepForBroadcast('game: overMoney');
+		} else if ($scope.state._challengeLoadComplete) {
+			if (id === 'null') {
+		  		$scope.eventBus.prepForBroadcast('selectedOption: null');
+			} else {
+		  		$scope.eventBus.prepForBroadcast('selectedOption: ' + id);
+			}
 		}
 	}
-	
 
+	$scope.displayChallenge = function(id) {
+		if (!$scope.state._gameOver) {
+			if(id !== 'null') {
+				$scope.challenge = $scope.getChallengeWithID(id);
+				$scope.currentChallengeOptions = [];
+				if ($scope.challenge.options && !$scope.challenge.options.option.length) {
+			    	for (i=0; i < $scope.state._optionRepository.options.length; i ++ ) {
+			      		if( $scope.state._optionRepository.options[i]['@id'] == $scope.challenge.options.option['@id']) {
+			        		$scope.currentChallengeOptions.push($scope.state._optionRepository.options[i]);
+			      		}
+			      	}
+				} else if ($scope.challenge.options.option.length) {
+				    for(k=0; k < $scope.challenge.options.option.length; k++) {
+				    	for (i=0; i < $scope.state._optionRepository.options.length; i ++ ) {
+				      		if( $scope.state._optionRepository.options[i]['@id'] == $scope.challenge.options.option[k]['@id']) {
+				        		$scope.currentChallengeOptions.push($scope.state._optionRepository.options[i]);
+				      		}
+				      	}
+				    }
+				}
+				$scope.challengeCopy = $scope.challenge.copy;
+				$scope.challengeType = $scope.challenge.type;
+				if ($scope.challengeType == 'complex') {
+					$scope.viewSrc = 'views/partials/complex/' + id + '.html';
+				} else {
+					$scope.viewSrc = 'views/partials/challenge.html';
+				}
+			}
+		} else if ($scope.state._gameOver && $scope.state._gameOverReason === 'money') {
+			$scope.viewSrc = 'views/partials/gameOverMoney.html';
+		} else if ($scope.state._gameOver && $scope.state._gameOverReason === 'jobStrikes') {
+			$scope.viewSrc = 'views/partials/gameOverJobStrikes.html';
+		} else if ($scope.state._gameOver && $scope.state._gameOverReason === 'quit') {
+			$scope.viewSrc = 'views/partials/gameOverQuit.html';
+		} else if ($scope.state._gameOver && $scope.state._gameOverReason === 'win') {
+			$scope.viewSrc = 'views/partials/gameOverWin.html';
+		}
+	}	
 });

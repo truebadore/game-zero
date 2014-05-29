@@ -6,7 +6,7 @@ optionServiceModule.factory("OptionRepositoryService", function ($rootScope, $ht
 
   Repository.getData = function() {
     var defer = $q.defer();
-    $http.get('../docs/options.json', { cache: 'true'})
+    $http.get('../docs/options.json', { cache: 'true'})  //mk-build
     .success(function(data) {
         defer.resolve(data);
     });

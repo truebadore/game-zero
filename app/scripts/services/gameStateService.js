@@ -8,7 +8,7 @@ gameStateModule.factory('gameStateService',  ['$rootScope', 'eventBusService', '
   gameState._currentChallengeIndex = '-1';
   gameState._allPayDayAdjustment = 0;
   gameState._nextPayDayAdjustment = 0;
-  gameState._playerSalary = 0;
+  gameState._gameOver = false;
 
   gameState._jobStrikes = {
     'strikeOne': 'false',
@@ -39,6 +39,11 @@ gameStateModule.factory('gameStateService',  ['$rootScope', 'eventBusService', '
     this._init();
   }
 
+  gameState.endGame = function (arg) {
+    gameState._gameOver = true;
+    gameState._gameOverReason = arg;
+  }
+
   gameState._init = function() {
     this._initGame();
     this._initialized = true;
@@ -67,12 +72,16 @@ gameStateModule.factory('gameStateService',  ['$rootScope', 'eventBusService', '
         return this._currentDay;
   };
   gameState.nextDay = function() {
-      if(gameState._currentChallengeIndex > 3) {
-        ++gameState._currentDayIndex;
+      if(gameState._currentChallengeIndex > 1) {
+        if (gameState._currentDayIndex < 30) {
+          ++gameState._currentDayIndex;
+        }
       }
   };
   gameState.prevDay = function() {
+      if(gameState._currentDayIndex < 1) {
         --gameState._currentDayIndex;
+      }
   };
   gameState.setBalance = function(amount) {
         gameState._currentBankBalance = +amount;
@@ -90,6 +99,15 @@ gameStateModule.factory('gameStateService',  ['$rootScope', 'eventBusService', '
       gameState._debugMode = false;
     } 
   };
+
+  gameState.toggleSound = function(state) {
+    if (state === 'on') {
+      gameState._isSoundOn = true;
+    } else if (state = 'off') {
+      gameState._isSoundOn = false;
+    } 
+  };
+
   gameState.onChallengeSelected = function (challenge) {
     gameState._currentChallengeIndex = challenge;
     eventBus.prepForBroadcast('displayChallenge: ' + gameState._currentChallengeIndex);
@@ -140,8 +158,14 @@ gameStateModule.factory('gameStateService',  ['$rootScope', 'eventBusService', '
         case "game":
           if (arg === 'begin') {
             gameState.beginGame();
-          } else if (arg === 'over') {
-            gameState.endGame();
+          } else if (arg === 'overMoney') {
+            gameState.endGame('money');
+          } else if (arg === 'overJobStrikes') {
+            gameState.endGame('jobStrikes');
+          } else if (arg === 'overQuit') {
+            gameState.endGame('quit');
+          } else if (arg === 'overWin') {
+            gameState.endGame('win');
           }
           break;
         case "nextday":
@@ -161,6 +185,9 @@ gameStateModule.factory('gameStateService',  ['$rootScope', 'eventBusService', '
           break;
         case "creditaccount":
           gameState.creditAccount(arg);
+          break;
+        case "sound":
+          gameState.toggleSound(arg);
           break;
         case "debug":
           gameState.toggleDebug(arg);
