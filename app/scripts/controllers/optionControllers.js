@@ -4,7 +4,7 @@ optionControllers.controller('OptionController', ['$scope', '$http', function($s
 	$scope.state = gameStateService;
 
 	$scope.OptionRepository = function() {
-		$http.get('../docs/options.json').success(function(data) {
+		$http.get('../docs/options.json').success(function(data) {  // mk-build
     		$scope.options = data.options.option;
   		});
 		$scope.optionsSize = $scope.options.length;

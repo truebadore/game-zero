@@ -1,6 +1,6 @@
 var layoutManagerDirectives = angular.module('layoutManagerDirectives', ['matchmedia-ng']);
 
-layoutManagerDirectives.directive('directivecontrolreference', [ '$window', function factory($window) {
+layoutManagerDirectives.directive('directivecontrolreference', [ '$window', '$timeout', function factory($window, $timeout) {
   return {
     restrict: 'E',
     replace: true,
@@ -51,8 +51,6 @@ layoutManagerDirectives.directive('directivecontrolreference', [ '$window', func
         dayDisplayDivElements = daysListContainerElement.children().find('div');
         spentBackgroundElement = angular.element(document.getElementById('spent-background'));
         spentBackgroundHeight = spentBackgroundElement[0].offsetHeight;
-        debugPanelElementWidth = debugPanelElement[0].offsetWidth;
-        debugPanelElementHeight = debugPanelElement[0].offsetHeight;
         spentBackgroundWidth = spentBackgroundElement[0].offsetWidth;
         dayNumberReadoutElement = angular.element(document.getElementById('day-number-readout')); 
         bankBalanceReadoutElement = angular.element(document.getElementById('bank-balance-readout'));
@@ -89,6 +87,26 @@ layoutManagerDirectives.directive('directivecontrolreference', [ '$window', func
         sideBordersTranslucent.removeClass('display-hidden');
         sideBordersTranslucent.addClass('display-visible');
       }
+      scope.thisDirectiveControl.displayResults = function () {
+        resultsElement = angular.element(document.getElementById('results-circle'));
+        challengeElement = angular.element(document.getElementById('challenge-display'));
+        resultsElement.removeClass('display-hidden');
+        resultsElement.addClass('display-visible');
+        challengeElement.addClass('display-hidden');
+        challengeElement.removeClass('display-visible');
+
+      }
+
+      scope.thisDirectiveControl.hideResults = function () {
+        resultsElement = angular.element(document.getElementById('results-circle'));
+        challengeElement = angular.element(document.getElementById('challenge-display'));
+        resultsElement.addClass('display-hidden');
+        resultsElement.removeClass('display-visible');
+        challengeElement.removeClass('display-hidden');
+        challengeElement.addClass('display-visible');
+
+      }
+
       scope.thisDirectiveControl.disableControls = function () {
         DOMObjectHandles();
         controlsAndBadgesElement.addClass('display-hidden');
@@ -102,13 +120,7 @@ layoutManagerDirectives.directive('directivecontrolreference', [ '$window', func
         challengesAndOptionsElement.removeClass('display-visible');
         challengesAndOptionsElement.addClass('display-hidden');
       }
-      scope.thisDirectiveControl.layoutChallengesAndOptions = function () {
-        DOMObjectHandles();
-        var vpH = viewportHeight;
-        var vpW = viewportWidth;
-        challengesAndOptionsElement.css('top', (vpH/2) - (challengesAndOptionsElement[0].clientHeight/2) + 'px');
-        challengesAndOptionsElement.css('left', (vpW/2) - (challengesAndOptionsElement[0].clientWidth/2) + 'px');
-      }
+
 
       scope.thisDirectiveControl.screenLayoutHandler = function() {
         DOMObjectHandles();
@@ -121,15 +133,6 @@ layoutManagerDirectives.directive('directivecontrolreference', [ '$window', func
         }
         spentBackgroundElement.css('top', (vpH/2) - (spentBackgroundHeight/2) + 'px');
         spentBackgroundElement.css('left',(vpW/2) - (spentBackgroundWidth/2) +  'px');
-        debugPanelElement.css('top', (vpH/2) - (debugPanelElementHeight/2) + 'px');
-        debugPanelElement.css('left', (vpW/2) - (debugPanelElementWidth/2) + 'px');  
-        if(scope.directiveControl.debugMode) { 
-          debugPanelElement.addClass('display-visible'); 
-          debugPanelElement.removeClass('display-hidden');    
-        } else {
-          debugPanelElement.addClass('display-hidden');
-          debugPanelElement.removeClass('display-visible');
-        } 
         if(scope.$parent.isPhone) {
           dayNumberReadoutElement.css('left', (vpW) - 100 + 'px');  
         } else {
@@ -152,9 +155,20 @@ layoutManagerDirectives.directive('directivecontrolreference', [ '$window', func
           spentLogoImageElement.css('top', vpH - 82 + 'px');
           spentLogoImageElement.css('left', (vpW/2) - 127 + 'px');      
         }
-        scope.$emit('onScreenLayoutComplete', element, attrs);
+        // challengesAndOptionsElement.css('top', (vpH/2) - (challengesAndOptionsElement[0].offsetHeight/2) + 'px');
+        // challengesAndOptionsElement.css('left', (vpW/2) - (challengesAndOptionsElement[0].offsetWidth/2) + 'px');
+        debugPanelElement.css('top', (vpH/2) - (debugPanelElementHeight/2) + 'px');
+        debugPanelElement.css('left', (vpW/2) - (debugPanelElementWidth/2) + 'px'); 
+        // for (i=0; i<10; i++) {
+        //   var timeout = $timeout(function(){
+        //     scope.thisDirectiveControl.layoutChallengesAndOptions()
+        //     console.log(i)
+        //   }, 100);
+        // }
       }
-      angular.element($window).bind('resize', scope.thisDirectiveControl.screenLayoutHandler);
+      $timeout(function(){ 
+        angular.element($window).bind('resize', scope.thisDirectiveControl.screenLayoutHandler);
+      });
     }
   }
 }]);
@@ -169,11 +183,11 @@ layoutManagerDirectives.directive('dayPositionInit', ['$window', '$timeout', fun
   }
 }]);
 
-layoutManagerDirectives.directive('challengePanelInit', ['$window','$timeout',  function($window, $timeout) {
+layoutManagerDirectives.directive('challengeInit', ['$window', '$timeout', function($window, $timeout) {
   return {
     link : function(scope, element, attrs) {
-      $timeout(function(){
-          scope.$emit('onChallengesAndOptionsComplete', element, attrs);
+      if (scope.$last) $timeout(function(){
+          scope.$emit('onChallengeLoadComplete', element, attrs);
       }, 0);
     }
   }
@@ -232,6 +246,7 @@ layoutManagerDirectives.directive('spentLogoPosition', ['$window', function($win
     }
   }
 }]);
+
 
 
 layoutManagerDirectives.directive('dayListRightEdge', ['$window', function($window) {
@@ -554,11 +569,7 @@ layoutManagerDirectives.directive('exitControlPosition', ['$window', function($w
       link : function(scope, element, attr) {
 
         angular.element($window).bind('resize', function(e) {
-          var xImageElement = angular.element(document.getElementById('exit-control-image'));
-          var width = xImageElement.innerWidth;
-          var height = xImageElement.innerHeight; 
           if(scope.isPhone) {
-            xImageElement.css('width', '114%');
             element.css('top', '8px');
           } else if (scope.isTablet && scope.isLandscape) {
               element.css('top', '4px');
@@ -569,11 +580,7 @@ layoutManagerDirectives.directive('exitControlPosition', ['$window', function($w
           }  
         });
         angular.element($window).bind('load', function(e) {
-          var xImageElement = angular.element(document.getElementById('exit-control-image'));
-          var width = xImageElement.innerWidth;
-          var height = xImageElement.innerHeight;
           if(scope.isPhone) {
-              xImageElement.css('width', '114%');
               element.css('top', '8px');
               element.css('left', '8px');    
           } else if (scope.isTablet && scope.isLandscape) {

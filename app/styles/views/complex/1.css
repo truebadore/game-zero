@@ -1,0 +1,17 @@
+@media screen and (max-width: 767px) {  /* phone */
+	.results-circle {
+		margin-top: -43%;
+	}
+	.challenge-padding { 
+	 padding-top: 26%;
+	 padding-left: 18%;
+	 padding-right: 18%;
+	}
+}
+
+@media screen and (min-width: 768px) {  /* everything else */
+	.challenge-padding {
+		padding: 0% 10%
+	}
+}
+

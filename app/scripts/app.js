@@ -20,7 +20,9 @@ var spentApp = angular.module('spentApp', [
     // services
     'eventBusService',
     'gameStateService',
-    'DayDataService'
+    'DayDataService',
+    'ChallengeRepositoryService',
+    'OptionRepositoryService'
 
   ]);
 
@@ -29,10 +31,6 @@ spentApp.config(function ($routeProvider) {
     .when('/', {
       templateUrl: 'views/main.html',
       controller: 'MainController'
-    })
-    .when('/#/', {
-      templateUrl: 'views/partials/singleChallenge.html',
-      controller: 'ChallengeController'
     })
     .otherwise({
       redirectTo: '/'

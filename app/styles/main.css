@@ -1,3 +1,91 @@
+.game-over-money-results {
+  display: table;
+  width: 100%;
+  padding-top: 15%;
+}
+.game-over-money-results .challenge-prompt {
+  width: 100%;
+}
+
+.game-over-money-results .option-prompt {
+  display: table-row;
+}
+.what-dywtd {
+  font-family: 'AlternateGothic', AlternateGothic, sans-serif;
+  color: #E0D8BA;
+  font-size: 38px;
+  letter-spacing: 5px;
+  font-weight: lighter;
+  float: left;
+  padding: 0 30% 0 30%;
+  display: table-row;
+  padding: 0 25%;
+  font-size: 50px;
+  width: 100%;
+}
+.results-table {
+  display: table;
+  margin-top: 20%;
+}
+.results-copy {
+  font-family:"Times New Roman", Times, serif;
+  color: black;
+  font-size: 15px;
+  letter-spacing: 1px;
+  display: table;
+  padding-left: 30%;
+  padding-right: 30%;
+}
+.results-circle {
+  width: 40%;
+  height:0;
+  padding-bottom: 40%;
+  -moz-border-radius: 40%; 
+  -webkit-border-radius: 40%; 
+  border-radius: 50%;
+  background: #8fd5c8;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: -30%;
+}
+.results-copy-div {
+  display: table;
+  color: white;
+  font-family: 'AlternateGothic', AlternateGothic, sans-serif;
+  font-size: 44px;
+  letter-spacing: 3px;
+  margin-left: auto;
+  margin-right: auto;
+  z-index: 30000;
+  width: 100%;
+}
+.results-circle-button {
+  display: table-row;
+  z-index: 26000;
+}
+.results-circle-button a {
+  color: black;
+  background-color: white;
+  font-size: 22px;
+  letter-spacing: 1px;
+  font-family: 'AlternateGothic', AlternateGothic, sans-serif;
+  font-weight: lighter;
+  cursor: pointer;
+  padding: 3px 25px;
+  border: 2px white;
+  border-radius: 5px;
+}
+.results-circle-button a:hover {
+  color: #8fd5c8;
+  font-size: 22px;
+  background-color: white;
+  letter-spacing: 1px;
+  font-family: 'AlternateGothic', AlternateGothic, sans-serif;
+  font-weight: lighter;
+  font-style: normal;
+  cursor: pointer;
+  text-decoration: none !important;
+}
 .main {
   overflow: hidden;
   position: absolute;
@@ -9,19 +97,46 @@
  .spent-logo-initial {
   
  }
- 
+ .challenge-display {
+  display: table;
+  padding-top: 15%;
+  width: 100%;
+ }
+.challenge-padding {
+  display: table-row;
+  padding: 0% 30%;
+}
 .challenge-option-results {
-  z-index: 200002;
+  z-index: 20002;
   position: absolute;
   text-align: center;
   margin-left: auto;
   margin-right: auto;
+  width: 100%
 }
+
+.simple-challenge-prompt {
+  font-family: 'AlternateGothic', AlternateGothic, sans-serif;
+  color: #E0D8BA;
+  font-size: 18px;
+  letter-spacing: 5px;
+  font-weight: lighter;
+  float: left;
+  width: 100%;
+}
+
 .challenge-prompt {
   font-family: 'AlternateGothic', AlternateGothic, sans-serif;
   color: #E0D8BA;
+  font-size: 24px;
   letter-spacing: 5px;
   font-weight: lighter;
+  float: left;
+  width: 100%;
+}
+
+.options-horizontal {
+  /*display: table-row;*/
 }
 .option-prompt {
   font-family: 'AlternateGothic', AlternateGothic, sans-serif;
@@ -48,6 +163,26 @@
   font-family: 'AlternateGothic', AlternateGothic, sans-serif;
   font-weight: lighter;
 }
+
+.option-text-button a {
+  color: #cc3300;
+  font-size: 22px;
+  letter-spacing: 1px;
+  font-family: 'AlternateGothic', AlternateGothic, sans-serif;
+  font-weight: lighter;
+  cursor: pointer;
+}
+.option-text-button a:hover {
+  color: #8fd5c8;
+  font-size: 22px;
+  letter-spacing: 1px;
+  font-family: 'AlternateGothic', AlternateGothic, sans-serif;
+  font-weight: lighter;
+  font-style: normal;
+  cursor: pointer;
+  text-decoration: none !important;
+}
+
 .spent-background {
   z-index: 2;
   position:  absolute;
@@ -55,7 +190,7 @@
 .spent-background img {
   position: relative;
   top: 0px;
-  left: 0px
+  left: 0px;
   z-index: 2;
 }
 .menuCanvas {
@@ -275,7 +410,7 @@
 .exit {
   position: absolute;
   margin-top: 10px;
-  z-index: 15000;
+  z-index: 20000;
   top: 17px;
   left: 18px;
 }
@@ -370,6 +505,8 @@
 
 .navbar-collapse-bs3-override {
   text-align: center;
+  position: absolute;
+  width: 100%;
 }
 
 .main-panel {
@@ -426,7 +563,7 @@ border-top: 1px solid rgba(102, 153, 153, .3);
 } 
 .phone-menu {
   position: absolute;
-    z-index: 16000;
+    z-index: 30000;
     cursor: pointer;
 }
 
@@ -465,10 +602,12 @@ border-top: 1px solid rgba(102, 153, 153, .3);
 }
 
 .spent-logo-initial {
-  position: absolute;
+  position: relative;
   z-index: 15000;
-  top: -10vh;
-  left: 10vw;
+  margin-left: auto;
+  margin-right: auto;
+  float: left;
+  width: 100%;
 }
 .can-u-make-it {
   position: absolute;
@@ -497,7 +636,7 @@ border-top: 1px solid rgba(102, 153, 153, .3);
   font-size: 20px;
   color: red;
   position: absolute;
-  z-index: 15000;
+  z-index: 21000;
 }
 
 
@@ -522,8 +661,33 @@ body {
                 landscape : "(orientation: landscape)"
 see: https://github.com/AnalogJ/matchmedia-ng/blob/master/matchmedia-ng.js;
 */
-/
+
 @media screen and (max-width: 767px) {  /* phone */
+ .results-copy-div {
+  font-size: 26px;
+ }
+ .results-table {
+  margin-top: 58%;
+ }
+ .results-copy {
+  font-size: 10px;
+ }
+ .results-circle {
+  width: 60%;
+  padding-bottom: 60%;
+  -moz-border-radius: 60%; 
+  -webkit-border-radius: 60%; 
+  margin-top: -50%;
+}
+ .exit p {
+  letter-spacing: 1px;
+  margin-left: -3px;
+ }
+  .exit img {
+  margin: -52px 0px 0px -9px;
+  width: 90%
+ }
+
  .menu  > li {
   display: none;
  }
@@ -531,22 +695,38 @@ see: https://github.com/AnalogJ/matchmedia-ng/blob/master/matchmedia-ng.js;
    left:  40px;
  }
  .exit {
-    width: 90%;
     top: 8px;
     left: 8px;
  }
  .phone-menu {
-    display: inline;
+    display: inline-block;
  }
- .challenge-prompt {
-  font-size: 24px;
+ .simple-challenge-prompt {
+  font-size: 22px;
  }
- .spent-logo-initial {
 
+ .what-dywtd {
+  font-size: 25px;
  }
+
+ .challenge-padding {
+  padding: 0% 15%;
+ }
+ .challenge-display {
+  padding-top: 24%;
+ }
+
+ .day-one-badge {
+    display: none;
+ }
+ .can-u-make-it {
+    display: none;
+ }
+
 }
 
 @media screen and (max-height: 610px) { /* custom - too narrow */
+ 
  .day-one-badge {
     display: none;
  }
@@ -566,6 +746,12 @@ see: https://github.com/AnalogJ/matchmedia-ng/blob/master/matchmedia-ng.js;
  .challenge-prompt {
   font-size: 28px;
  }
+ .simple-challenge-prompt {
+  font-size: 28px;
+ }
+ .what-dywtd {
+  font-size: 32px;
+ }
 }
 @media screen and (min-width: 979px) { /* desktop */
  .bank-balance {
@@ -575,15 +761,19 @@ see: https://github.com/AnalogJ/matchmedia-ng/blob/master/matchmedia-ng.js;
     display: none; 
  }
  .challenge-prompt {
-    font-size: 44px;
+    font-size: 30px;
+ }
+ .simple-challenge-prompt {
+  font-size: 30px;
+ }
+ .challenge-padding {
+  padding: 0% 30%;
+ }
+ .what-dywtd {
+  font-size: 42px;
  }
 }
-@media screen and (orientation: portrait) { /* portrait */
 
-}
-@media screen and (orientation: landscape) { /* landscape */
-
-}
 @media screen and (max-width: 767px) and (orientation: landscape) { /* phone landscape */
   .main {
     display: none;

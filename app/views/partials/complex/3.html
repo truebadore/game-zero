@@ -1,0 +1,20 @@
+<div id="challenge-display" class="challenge-display">
+	<div class="challenge-padding challenge-prompt" ng-bind-html="challengeCopy"></div>
+	<div class="options-horizontal" ng-model="challengeOptions">
+		<div challenge-init ng-repeat="item in currentChallengeOptions"  class="option-text-button">
+				<a ng-click="selectedOption(item)" ng-bind-html="item['title']"/>
+		</div>
+	</div>
+</div>
+<div id="results-circle" class="results-table display-hidden">
+	<div class="results-copy-div">RESULT
+		<div class="results-copy" ng-bind-html="optionCopy"></div>
+		<div class="results-circle-button">
+			<a ng-click="continueOption(optionId)">CONTINUE</a>
+			<div class="results-circle"></div>
+		</div>
+	</div>
+</div>
+<style type="text/css">
+	@import url('styles/views/complex/3.css');
+</style>
